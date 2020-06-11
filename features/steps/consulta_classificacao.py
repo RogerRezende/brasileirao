@@ -14,4 +14,9 @@ def step_impl(context):
 def step_impl(context):
 	raise NotImplementedError(u'STEP: When clico no menu do brasileirão')
 
+# configuração do segundo step when
+@when(u'classificação é exibida')
+def step_impl(context):
+	raise NotImplementedError(u'STEP: When classificação é exibida')
+
 
