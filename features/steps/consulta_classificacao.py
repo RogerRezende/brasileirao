@@ -16,6 +16,9 @@ element_link_nacionais = 'menu-2-nacionais'
 # variável que irá receber o elemento da tabela do brasileirão série a que iremos interagir
 element_link_brasileirao_a = 'menu-3-brasileirao-serie-a'
 
+# variável que irá receber o elemento do primeiro colocado da tabela
+get_primeiro = '//*[@id="classificacao__wrapper"]/article/section[1]/div/table[1]/tbody/tr[1]/td[2]/strong'
+
 # configuração do step given
 @given(u'acesso a página inicial do Globoesporte')
 def step_impl(context):
@@ -30,14 +33,17 @@ def step_impl(context):
 	context.element_menu = context.web.find_element_by_class_name(element_menu)
 	# irá realizar o clique do menu
 	context.element_menu.click()
+
 	# irá procurar no código da página o elemento com o id necessário para acessar as tabelas
 	context.element_link_tabelas = context.web.find_element_by_id(element_link_tabelas)
 	# irá realizar o clique das tabelas
 	context.element_link_tabelas.click()
+
 	# irá procurar no código da página o elemento com o id necessário para acessar as tabelas nacionais
 	context.element_link_nacionais = context.web.find_element_by_id(element_link_nacionais)
 	# irá realizar o clique das tabelas nacionais
 	context.element_link_nacionais.click()
+
 	# irá procurar no código da página o elemento com o id necessário para acessar a tabela do brasileirão série a
 	context.element_link_brasileirao_a = context.web.find_element_by_id(element_link_brasileirao_a)
 	# irá realizar o clique da tabela do brasileirão série a
@@ -47,7 +53,9 @@ def step_impl(context):
 # configuração do segundo step when
 @when(u'classificação é exibida')
 def step_impl(context):
-	raise NotImplementedError(u'STEP: When classificação é exibida')
+	# irá procurar no código da página o elemento com o xpath necessário para pegar o primeiro colocado
+	context.get_primeiro = context.web.find_element_by_xpath(get_primeiro)
+	# raise NotImplementedError(u'STEP: When classificação é exibida')
 
 # configuração do step then
 @then(u'devo saber quem é o primeiro colocado')
