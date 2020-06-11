@@ -9,4 +9,9 @@ base_url = 'http://globoesporte.globo.com/'
 def step_impl(context):
 	raise NotImplementedError(u'STEP: Given acesso a página inicial do Globoesporte')
 
+# configuração do primeiro step when
+@when(u'clico no menu do brasileirão')
+def step_impl(context):
+	raise NotImplementedError(u'STEP: When clico no menu do brasileirão')
+
 
