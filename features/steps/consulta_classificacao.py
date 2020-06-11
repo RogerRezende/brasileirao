@@ -19,4 +19,7 @@ def step_impl(context):
 def step_impl(context):
 	raise NotImplementedError(u'STEP: When classificação é exibida')
 
-
+# configuração do step then
+@then(u'devo saber quem é o primeiro colocado')
+def step_impl(context):
+	raise NotImplementedError(u'STEP: Then devo saber quem é o primeiro colocado')
