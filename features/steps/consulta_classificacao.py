@@ -4,16 +4,45 @@ from behave import given, when, then
 # variável que irá receber a URL do site que iremos interagir
 base_url = 'http://globoesporte.globo.com/'
 
+# variável que irá receber o elemento do menu-button que iremos interagir
+element_menu = 'menu-button'
+
+# variável que irá receber o elemento das tabelas que iremos interagir
+element_link_tabelas = 'menu-1-tabelas'
+
+# variável que irá receber o elemento das tabelas dos campeonatos nacionais que iremos interagir
+element_link_nacionais = 'menu-2-nacionais'
+
+# variável que irá receber o elemento da tabela do brasileirão série a que iremos interagir
+element_link_brasileirao_a = 'menu-3-brasileirao-serie-a'
+
 # configuração do step given
 @given(u'acesso a página inicial do Globoesporte')
 def step_impl(context):
+	# irá acessar a página que escolhemos
 	context.web.get(base_url)
 	# raise NotImplementedError(u'STEP: Given acesso a página inicial do Globoesporte')
 
 # configuração do primeiro step when
 @when(u'clico no menu do brasileirão')
 def step_impl(context):
-	raise NotImplementedError(u'STEP: When clico no menu do brasileirão')
+	# irá procurar no código da página o elemento com o class name necessário para acessar o menu
+	context.element_menu = context.web.find_element_by_class_name(element_menu)
+	# irá realizar o clique do menu
+	context.element_menu.click()
+	# irá procurar no código da página o elemento com o id necessário para acessar as tabelas
+	context.element_link_tabelas = context.web.find_element_by_id(element_link_tabelas)
+	# irá realizar o clique das tabelas
+	context.element_link_tabelas.click()
+	# irá procurar no código da página o elemento com o id necessário para acessar as tabelas nacionais
+	context.element_link_nacionais = context.web.find_element_by_id(element_link_nacionais)
+	# irá realizar o clique das tabelas nacionais
+	context.element_link_nacionais.click()
+	# irá procurar no código da página o elemento com o id necessário para acessar a tabela do brasileirão série a
+	context.element_link_brasileirao_a = context.web.find_element_by_id(element_link_brasileirao_a)
+	# irá realizar o clique da tabela do brasileirão série a
+	context.element_link_brasileirao_a.click()
+	# raise NotImplementedError(u'STEP: When clico no menu do brasileirão')
 
 # configuração do segundo step when
 @when(u'classificação é exibida')
