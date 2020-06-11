@@ -60,4 +60,20 @@ def step_impl(context):
 # configuração do step then
 @then(u'devo saber quem é o primeiro colocado')
 def step_impl(context):
-	raise NotImplementedError(u'STEP: Then devo saber quem é o primeiro colocado')
+	# irá receber o texto do primeiro colocado
+	primeiro = context.get_primeiro.text
+
+	# imprime o primeiro colocado
+	print(primeiro)
+
+	# irá abrir o arquivo results.txt para leitura
+	file = open('R:\\Documentos\\projetos\\brasileirao\\features\\results\\results.txt', 'r')
+	# irá ler as linhas do arquivo
+	content = file.readlines()
+	# irá incluir um \n e depois o primeiro colocado
+	content.append('\n' + primeiro)
+	# irá abrir o arquivo results.txt para escrita
+	file = open('R:\\Documentos\\projetos\\brasileirao\\features\\results\\results.txt', 'w')
+	# irá escrever o content no arquivo results.txt
+	file.writelines(content)
+	# raise NotImplementedError(u'STEP: Then devo saber quem é o primeiro colocado')
