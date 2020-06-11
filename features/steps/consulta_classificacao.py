@@ -19,6 +19,9 @@ element_link_brasileirao_a = 'menu-3-brasileirao-serie-a'
 # variável que irá receber o elemento do primeiro colocado da tabela
 get_primeiro = '//*[@id="classificacao__wrapper"]/article/section[1]/div/table[1]/tbody/tr[1]/td[2]/strong'
 
+# variável que irá receber o elemento do último colocado da tabela
+get_ultimo = '//*[@id="classificacao__wrapper"]/article/section[1]/div/table[1]/tbody/tr[20]/td[2]/strong'
+
 # configuração do step given
 @given(u'acesso a página inicial do Globoesporte')
 def step_impl(context):
@@ -63,6 +66,16 @@ def step_impl(context):
 	context.get_primeiro = context.web.find_element_by_xpath(get_primeiro)
 	# raise NotImplementedError(u'STEP: When classificação é exibida')
 
+# configuração do segundo step when do último colocado
+@when(u'classificação é exibida do último colocado')
+def step_impl(context):
+	# aguardar 25 segundos para carregar a página para realizar os finds necessários
+	context.web.implicitly_wait(25)
+
+	# irá procurar no código da página o elemento com o xpath necessário para pegar o primeiro colocado
+	context.get_ultimo = context.web.find_element_by_xpath(get_ultimo)
+	# raise NotImplementedError(u'STEP: When classificação é exibida do último colocado')
+
 # configuração do step then
 @then(u'devo saber quem é o primeiro colocado')
 def step_impl(context):
@@ -83,3 +96,24 @@ def step_impl(context):
 	# irá escrever o content no arquivo results.txt
 	file.writelines(content)
 	# raise NotImplementedError(u'STEP: Then devo saber quem é o primeiro colocado')
+
+# configuração do step then do último colocado
+@then(u'devo saber quem é o último colocado')
+def step_impl(context):
+	# irá receber o texto do primeiro colocado
+	ultimo = context.get_ultimo.text
+
+	# imprime o primeiro colocado
+	print(ultimo)
+
+	# irá abrir o arquivo results.txt para leitura
+	file = open('R:\\Documentos\\projetos\\brasileirao\\features\\results\\results.txt', 'r')
+	# irá ler as linhas do arquivo
+	content = file.readlines()
+	# irá incluir um \n e depois o primeiro colocado
+	content.append('\n' + ultimo)
+	# irá abrir o arquivo results.txt para escrita
+	file = open('R:\\Documentos\\projetos\\brasileirao\\features\\results\\results.txt', 'w')
+	# irá escrever o content no arquivo results.txt
+	file.writelines(content)
+	# raise NotImplementedError(u'STEP: Then devo saber quem é o último colocado')
