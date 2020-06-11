@@ -29,6 +29,9 @@ def step_impl(context):
 # configuração do primeiro step when
 @when(u'clico no menu do brasileirão')
 def step_impl(context):
+	# aguardar 25 segundos para carregar a página para realizar os finds necessários
+	context.web.implicitly_wait(25)
+
 	# irá procurar no código da página o elemento com o class name necessário para acessar o menu
 	context.element_menu = context.web.find_element_by_class_name(element_menu)
 	# irá realizar o clique do menu
@@ -53,6 +56,9 @@ def step_impl(context):
 # configuração do segundo step when
 @when(u'classificação é exibida')
 def step_impl(context):
+	# aguardar 25 segundos para carregar a página para realizar os finds necessários
+	context.web.implicitly_wait(25)
+
 	# irá procurar no código da página o elemento com o xpath necessário para pegar o primeiro colocado
 	context.get_primeiro = context.web.find_element_by_xpath(get_primeiro)
 	# raise NotImplementedError(u'STEP: When classificação é exibida')
